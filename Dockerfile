@@ -6,8 +6,7 @@ FROM python:3.10-slim
 # Копируем файл зависимостей (requirements.txt) и устанавливаем их
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY main.py .
-COPY .env .
+COPY src/main.py .
 
 
 # Копируем все файлы приложения в контейнер
