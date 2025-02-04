@@ -1,13 +1,18 @@
+import time
+
 from fastapi import FastAPI
-import uvicorn
+from fastapi.responses import StreamingResponse
 
 app = FastAPI()
 
 
+async def fake_video_streamer():
+
+    for i in range(10):
+        yield b"some fake video bytes "
+        time.sleep(1)
+
+
 @app.get("/")
-async def get_site():
-    return """<html><body><h1>Hello World</h1></body></html>"""
-
-
-if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=3002, reload=True)
+async def main():
+    return StreamingResponse(fake_video_streamer())
