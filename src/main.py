@@ -13,6 +13,7 @@ async def fake_video_streamer():
         time.sleep(1)
 
 
+
 @app.get("/")
 async def main():
     return StreamingResponse(fake_video_streamer())
